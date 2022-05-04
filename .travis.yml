@@ -10,3 +10,15 @@ before_install:
 script:
   - docker run -e CI=true tacaomoura/docker-react npm run test
 
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: "docker"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-658496493658"
+  bucket_path: "elasticbeanstalk-us-east-2-658496493658"
+  on:
+    branch: master
+  access_key_id: $aws_access_key
+  secret_access_key:
+    secure: "$aws_secret_key"
